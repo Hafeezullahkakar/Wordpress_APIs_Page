@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.13/xlsx.full.min.js"></script>
+
+    <style>
+      .loader {
+        height: 50vh;
+        font-size: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: normal;
+        margin-top: 3rem;
+      }
+      .products-component {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        padding-bottom: 50px;
+      }
+      .header-products {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 20px 50px;
+      }
+
+      .price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+        margin-left: 20px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+      }
+      .price > p {
+        margin-top: 15px;
+        margin-right: 8px;
+      }
+      .p_input > input {
+        padding: 10px;
+        border-radius: 20px;
+        outline: none;
+        border: 1px solid rgb(72, 72, 72);
+        margin-right: 10px;
+        margin-left: 3px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+      }
+      .city {
+        margin-right: 15px;
+        width: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+      }
+      .city > select {
+        padding: 10px;
+        border-radius: 20px;
+        width: 80%;
+        outline: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+      }
+      .type {
+        margin-right: 15px;
+        width: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+      }
+      .type > select {
+        padding: 10px;
+        border-radius: 20px;
+        width: 80%;
+        outline: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+      }
+
+      .products {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center !important;
+        align-items: flex-start;
+      }
+
+      .product {
+        width: 31%;
+        border: none;
+        padding: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 15px;
+        margin: 15px;
+        margin-bottom: 20px;
+        border: 1px solid beige;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .prod_details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 5px 15px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .product > img {
+        width: 100%;
+        height: auto !important;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+        transform: scale(1);
+      }
+
+      .product > img:hover {
+        transform: scale(1.05);
+      }
+
+      .product-title {
+        font-weight: bold;
+        font-size: 1.3rem;
+        flex-shrink: 0; /* Prevent the title from shrinking */
+      }
+
+      .product-price {
+        color: #000;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+      }
+
+      .product-description {
+        margin-top: 15px;
+        margin-bottom: 4px;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Truncate the description if it exceeds container height */
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limit the description to 3 lines */
+        -webkit-box-orient: vertical;
+      }
+
+      .readMore {
+        padding: 15px;
+        border-radius: 70px;
+        width: 40%;
+        background-color: #004ac1;
+        color: white;
+        cursor: pointer;
+        outline: none;
+        border: 1px solid transparent; /* Added transparent border */
+        margin: 10px;
+        margin-top: -15px;
+        font-size: 16px;
+        font-weight: bolder;
+        margin-bottom: 10px !important;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+          border-color 0.3s ease-in-out; /* Added border-color transition */
+      }
+
+      .readMore:hover {
+        background-color: white;
+        color: black;
+        border-color: black; /* Changed border color */
+        direction: rtl;
+      }
+
+      .showMoreBtn {
+        padding: 15px;
+        border-radius: 70px;
+        width: 15%;
+        color: black;
+        cursor: pointer;
+        outline: none;
+        border: 1px solid transparent; /* Added transparent border */
+        margin: 10px;
+        margin-top: -15px;
+        font-size: 16px;
+        font-weight: bolder;
+        margin: 50px;
+        margin-bottom: 10px !important;
+        border-color: black; /* Changed border color */
+        background-color: white;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+          border-color 0.3s ease-in-out; /* Added border-color transition */
+      }
+      .showMoreBtn:hover {
+        background-color: #004ac1;
+        color: white;
+        direction: rtl;
+      }
+
+      #wpform1626 {
+        width: 70%;
+      }
+
+      /* Media query for smaller screens */
+      @media screen and (max-width: 768px) {
+        .product {
+          width: 100%;
+          display: flex;
+        }
+        .header-products {
+          display: flex;
+          flex-direction: column !important;
+          width: 100%;
+          overflow: hidden;
+        }
+        .price {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+        }
+        .price > p {
+          margin-top: 10px;
+        }
+        .p_input > input {
+          padding: 8px;
+          border-radius: 20px;
+          outline: none;
+          border: 1px solid rgb(72, 72, 72);
+          margin: 10px;
+          width: 80%;
+        }
+        .city {
+          width: 80%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .city > select {
+          padding: 10px;
+          border-radius: 20px;
+          width: 99%;
+          outline: none;
+          margin: 10px;
+          margin-left: 13px;
+        }
+        .type {
+          width: 80%;
+          display: flex;
+        }
+        .type > select {
+          border-radius: 20px;
+          width: 80%;
+          outline: none;
+        }
+
+        .prod_details {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1; /* Allow the description to expand vertically */
+          padding: 5px 15px;
+          font-family: "Poppins", sans-serif;
+        }
+
+        .product-title {
+          font-weight: bold;
+          font-size: 1rem;
+          flex-shrink: 0; /* Prevent the title from shrinking */
+        }
+
+        .product-price {
+          color: #000;
+          font-size: 1rem;
+          margin-bottom: 20px;
+        }
+
+        .product-description {
+          margin-top: 15px;
+          margin-bottom: 4px;
+          overflow: hidden;
+          text-overflow: ellipsis; /* Truncate the description if it exceeds container height */
+          display: -webkit-box;
+          -webkit-line-clamp: 3; /* Limit the description to 3 lines */
+          -webkit-box-orient: vertical;
+        }
+
+        .readMore {
+          padding: 15px;
+          border-radius: 70px;
+          width: 40%;
+          background-color: #004ac1;
+          color: white;
+          cursor: pointer;
+          outline: none;
+          border: 1px solid transparent; /* Added transparent border */
+          margin: 10px;
+          margin-top: -15px;
+          font-size: 16px;
+          font-weight: bolder;
+          margin-bottom: 20px !important;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+            border-color 0.3s ease-in-out; /* Added border-color transition */
+        }
+
+        .readMore:hover {
+          background-color: white;
+          color: black;
+          border-color: black; /* Changed border color */
+          direction: rtl;
+        }
+
+        .showMoreBtn {
+          padding: 15px;
+          border-radius: 70px;
+          width: 40%;
+          color: black;
+          cursor: pointer;
+          outline: none;
+          border: 1px solid transparent; /* Added transparent border */
+          margin: 10px;
+          margin-top: -15px;
+          font-size: 16px;
+          font-weight: bolder;
+          margin: 50px;
+          margin-bottom: 10px !important;
+          border-color: black; /* Changed border color */
+          background-color: white;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+            border-color 0.3s ease-in-out; /* Added border-color transition */
+        }
+        .showMoreBtn:hover {
+          background-color: #004ac1;
+          color: white;
+          direction: rtl;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="products-component" id="products-component">
+      <div class="header-products" id="header-products">
+        <div class="price">
+          <p>Price:</p>
+          <div class="p_input">
+            <input type="number" placeholder="min" name="min-price" />
+            <input type="number" placeholder="max" name="max-price" />
+          </div>
+        </div>
+        <div class="city">
+          City:
+          <select id="cityFilter" name="city">
+            <option value="select">select city</option>
+          </select>
+        </div>
+        <div class="type">
+          Type:
+          <select id="typeFilter" name="type">
+            <option value="select">Select type</option>
+          </select>
+        </div>
+      </div>
+      <div class="loader" id="loader">
+        <i class="fas fa-spinner fa-pulse"></i>
+        <!-- Font Awesome spinning icon -->
+      </div>
+      <div id="wpform1626" style="display: none">
+        <div>This is Vp form</div>
+      </div>
+      <div class="products" id="products"></div>
+      <button id="showMoreBtn" class="showMoreBtn">Show More</button>
+    </div>
+
+    <script>
+      const products = [];
+
+      const fetchData = async () => {
+        const loader = document.getElementById("loader");
+        const productsContainer = document.getElementById("products");
+
+        try {
+          // Show the loader while fetching data
+          loader.style.display = "block";
+          productsContainer.style.display = "none";
+          const response = await fetch(
+            "https://buyandsellabusiness.com/tbdc/qb48c8b30425f6a92a5e87e02f9d37d5649bdf6e"
+          );
+
+          const data = await response.json();
+        } catch (error) {
+          console.error("Error: Failed to fetch data from the API", error);
+        }
+      };
+
+      const productContainer = document.getElementById("products");
+      const productsPerPage = 6; // Number of products to show per page
+      let currentPage = 1; // Current page number
+
+      // Function to handle the change event on the filters
+      const handleFilterChange = () => {
+        currentPage = 1; // Reset the current page when filters change
+        showProducts();
+      };
+
+      // Add event listeners for the filter inputs
+      document
+        .querySelector('select[name="city"]')
+        .addEventListener("change", handleFilterChange);
+      document
+        .querySelector('select[name="type"]')
+        .addEventListener("change", handleFilterChange);
+      document
+        .querySelector('input[name="min-price"]')
+        .addEventListener("input", handleFilterChange);
+      document
+        .querySelector('input[name="max-price"]')
+        .addEventListener("input", handleFilterChange);
+
+      // Function to filter products based on the selected city, type, and price range
+      const filterProducts = (
+        selectedCity,
+        selectedType,
+        minPrice,
+        maxPrice
+      ) => {
+        let filteredProducts = products;
+
+        // Filter products based on selected city (case-insensitive)
+        if (selectedCity !== "select") {
+          filteredProducts = filteredProducts.filter(
+            (product) =>
+              product.city.toLowerCase() === selectedCity.toLowerCase()
+          );
+        }
+
+        // Filter products based on selected type (case-insensitive)
+        if (selectedType !== "select") {
+          filteredProducts = filteredProducts.filter(
+            (product) =>
+              product.type.toLowerCase() === selectedType.toLowerCase()
+          );
+        }
+
+        // Filter products based on price range
+        if (!isNaN(minPrice) && !isNaN(maxPrice)) {
+          filteredProducts = filteredProducts.filter((product) => {
+            const productPrice = parseInt(product.price.replace(/[$,]/g, ""));
+            return productPrice >= minPrice && productPrice <= maxPrice;
+          });
+        } else if (!isNaN(minPrice)) {
+          filteredProducts = filteredProducts.filter((product) => {
+            const productPrice = parseInt(product.price.replace(/[$,]/g, ""));
+            return productPrice >= minPrice;
+          });
+        } else if (!isNaN(maxPrice)) {
+          filteredProducts = filteredProducts.filter((product) => {
+            const productPrice = parseInt(product.price.replace(/[$,]/g, ""));
+            return productPrice <= maxPrice;
+          });
+        }
+
+        return filteredProducts;
+      };
+
+      // Function to show products for the current page
+      const showProducts = () => {
+        const selectedCity = document.querySelector(
+          'select[name="city"]'
+        ).value;
+        const selectedType = document.querySelector(
+          'select[name="type"]'
+        ).value;
+        const minPrice = parseInt(
+          document.querySelector('input[name="min-price"]').value
+        );
+        const maxPrice = parseInt(
+          document.querySelector('input[name="max-price"]').value
+        );
+
+        const filteredProducts = filterProducts(
+          selectedCity,
+          selectedType,
+          minPrice,
+          maxPrice
+        );
+
+        const startIdx = (currentPage - 1) * productsPerPage;
+        let endIdx = startIdx + productsPerPage;
+        if (endIdx > filteredProducts.length) {
+          endIdx = filteredProducts.length;
+        }
+        const paginatedProducts = filteredProducts.slice(startIdx, endIdx);
+
+        const productsHTML = paginatedProducts
+          .map(
+            (product) => `
+            <div class="product">
+              <img src="${product.thumbnail}" alt="Product" />
+              <div class="prod_details">
+                <h2 class="product-title">${product.title}</h2>
+                <p class="product-description">${truncateOverview(
+                  product.overview,
+                  150
+                )}</p>
+                <h3 class="product-price">${product.price}</h3>
+              </div>
+              <button class="readMore">Learn More</button>
+            </div>
+          `
+          )
+          .join("");
+
+        if (currentPage === 1) {
+          productContainer.innerHTML = productsHTML;
+        } else {
+          productContainer.innerHTML += productsHTML;
+        }
+
+        showMoreButton();
+      };
+
+      // Function to truncate the overview text
+      const truncateOverview = (overview, maxChars) => {
+        if (overview.length > maxChars) {
+          return overview.substring(0, maxChars) + "...";
+        }
+        return overview;
+      };
+
+      // Function to show or hide the "Show More" button
+      const showMoreButton = () => {
+        const filteredProducts = filterProducts(
+          document.querySelector('select[name="city"]').value,
+          document.querySelector('select[name="type"]').value,
+          parseInt(document.querySelector('input[name="min-price"]').value),
+          parseInt(document.querySelector('input[name="max-price"]').value)
+        );
+
+        const totalProducts = filteredProducts.length;
+        const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+        const showMoreBtn = document.getElementById("showMoreBtn");
+
+        if (currentPage >= totalPages || totalProducts <= productsPerPage) {
+          showMoreBtn.style.display = "none";
+        } else {
+          showMoreBtn.style.display = "block";
+        }
+      };
+
+      // Add event listener for "Learn More" buttons
+      productContainer.addEventListener("click", (event) => {
+        if (event.target.classList.contains("readMore")) {
+          const productsHeader = document.getElementById("header-products");
+          const productss = document.getElementById("products");
+          const showMr = document.getElementById("showMoreBtn");
+          const wpForm = document.getElementById("wpform1626");
+
+          const productDiv = event.target.closest(".product");
+          const productIndex = Array.from(productContainer.children).indexOf(
+            productDiv
+          );
+          const product = filterProducts(
+            document.querySelector('select[name="city"]').value,
+            document.querySelector('select[name="type"]').value,
+            parseInt(document.querySelector('input[name="min-price"]').value),
+            parseInt(document.querySelector('input[name="max-price"]').value)
+          )[productIndex];
+
+          wpForm.style.display = "block";
+          productsHeader.style.display = "none";
+          productss.style.display = "none";
+          showMr.style.display = "none";
+
+          if (product) {
+            console.log("product: ", product);
+          }
+        }
+      });
+
+      // Event listener for the "Show More" button
+      document.getElementById("showMoreBtn").addEventListener("click", () => {
+        currentPage++;
+        showProducts();
+      });
+
+      // Call the fetchData function to fetch and populate the products
+      fetchData();
+    </script>
+  </body>
+</html>

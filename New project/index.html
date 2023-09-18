@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My page</title>
+  
+    <style>
+      .bothSections {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .challengeSection {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .AllChallengeCards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+      .singleCard {
+        padding: 20px;
+        border: 1px solid #ccc;
+        margin: 10px;
+        min-height: 300px;
+        min-width: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .singleCard > img {
+        width: 60%;
+        height: 30%;
+        margin-bottom: 30px;
+      }
+      .singleCard > p {
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        height: -webkit-fill-available;
+        color: var(--color-black-500);
+        background-color: var(--color-white-100);
+        margin: 0px;
+      }
+
+
+      .offerSection{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .AllOfferCards{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      .line{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      .singleOfferCard {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin: 10px;
+        height: 300px ;
+        width: 400px ;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+		  @media screen and (max-width:767px){
+			width: 90%;
+      }
+    }
+    .singleOfferCard>h4{
+        text-align: left;
+
+    }
+    .singleOfferCard>p{
+      
+		  word-wrap: wrap;
+		  width: 95% ;
+		  font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 26px;
+    color: #193634;
+		  text-align:center;
+		  padding-top: 15px ;
+
+    }
+
+    </style>
+ 
+    <div class="bothSections">
+     
+      <div class="offerSection">
+        <h2 class="about-h2">
+            What we
+            <span> offer? </span>
+          </h2>
+     
+        <div class="AllOfferCards">
+            <div class="line">
+
+          <div class="singleOfferCard">
+            
+            <h4>Regulatory Support</h4>
+            <p>
+              In Week 1, we demystify the Canadian legal landscape with sessions
+              on Intellectual Property (IP) rights and corporate accounting and
+              taxation. Our partners also help you to navigate complex
+              regulations and set up your business on a firm legal footing
+            </p>
+          </div>
+          <div class="singleOfferCard withImg">
+            <h4>Sales Coaching</h4>
+            <p>
+              Week 2 shows you how to engage with the North American market.
+              From crafting compelling pitches to mastering sales fundamentals,
+              these sessions aim to elevate your market engagement skills
+            </p>
+          </div>
+          <div class="singleOfferCard">
+            <h4>Funding Support</h4>
+            <p>
+              Week 3 features targeted sessions on Government grants and venture
+              capital funding opportunities in Canada. We guide you through the
+              various public and private funding options available to you in a
+              new market
+            </p>
+          </div>
+        </div>
+        <div class="line">
+            <div class="singleOfferCard">
+                <h4>Funding Support</h4>
+                <p>
+                  Week 3 features targeted sessions on Government grants and venture
+                  capital funding opportunities in Canada. We guide you through the
+                  various public and private funding options available to you in a
+                  new market
+                </p>
+              </div>
+
+
+          <div class="singleOfferCard">
+            <h4>Networking Opportunities</h4>
+            <p>
+              Throughout the program, networking opportunities abound. Engage
+              with successful founders and investors through special talks and
+              1-on-1 sessions. Week 3 features CEO luncheons, investor dinners,
+              and ecosystem tours designed specifically for networking and
+              community building
+            </p>
+          </div>
+          <div class="singleOfferCard">
+            <h4>Building your Core Team:</h4>
+            <p>
+              We focus on human resources and team building, providing you with
+              the tools to assemble and maintain a high-performing team in the
+              Canadian work environment
+            </p>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

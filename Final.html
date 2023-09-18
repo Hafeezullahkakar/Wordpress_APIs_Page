@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final test</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+
+  <style>
+    #wpform1626{
+   width: 70%;
+ }
+ .loader {
+   height: 50vh;
+   font-size: 3rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-weight: normal;
+   margin-top: 3rem;
+ }
+ .products-component {
+   width: 100%;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
+   padding-bottom: 50px;
+ }
+ .header-products {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+   padding: 20px 50px;
+ }
+
+ .price {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 20px;
+   margin-left: 20px;
+   font-family: "Poppins", sans-serif;
+   font-size: 1.2rem;
+ }
+ .price > p {
+   margin-top: 15px;
+   margin-right: 8px;
+ }
+ .p_input > input {
+   padding: 10px;
+   border-radius: 20px;
+   outline: none;
+   border: 1px solid rgb(72, 72, 72);
+   margin-right: 10px;
+   margin-left: 3px;
+   font-family: "Poppins", sans-serif;
+   font-size: 1rem;
+ }
+ .city {
+   margin-right: 15px;
+   width: 20%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   font-family: "Poppins", sans-serif;
+   font-size: 1rem;
+ }
+ .city > select {
+   padding: 10px;
+   border-radius: 20px;
+   width: 80%;
+   outline: none;
+   font-family: "Poppins", sans-serif;
+   font-size: 1rem;
+ }
+ .type {
+   margin-right: 15px;
+   width: 20%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   font-family: "Poppins", sans-serif;
+   font-size: 1rem;
+ }
+ .type > select {
+   padding: 10px;
+   border-radius: 20px;
+   width: 80%;
+   outline: none;
+   font-family: "Poppins", sans-serif;
+   font-size: 1rem;
+ }
+
+ .products {
+   width: 100%;
+   padding: 20px;
+   box-sizing: border-box;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center !important;
+   align-items: flex-start;
+ }
+
+ .product {
+   width: 31%;
+   border: none;
+   padding: 2px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   overflow: hidden;
+   border-radius: 15px;
+   margin: 15px;
+   margin-bottom: 20px;
+   border: 1px solid beige;
+   box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+ }
+
+ .prod_details {
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
+   padding: 5px 15px;
+   font-family: "Poppins", sans-serif;
+ }
+
+ .product > img {
+   width: 100%;
+   height: auto !important;
+   border-radius: 15px;
+   cursor: pointer;
+   transition: transform 0.5s ease-in-out;
+   transform: scale(1);
+ }
+
+ .product > img:hover {
+   transform: scale(1.05);
+ }
+
+ .product-title {
+   font-weight: bold;
+   font-size: 1.3rem;
+   flex-shrink: 0; /* Prevent the title from shrinking */
+ }
+
+ .product-price {
+   color: #000;
+   font-size: 1.2rem;
+   margin-bottom: 20px;
+ }
+
+ .product-description {
+   margin-top: 15px;
+   margin-bottom: 4px;
+   overflow: hidden;
+   text-overflow: ellipsis; /* Truncate the description if it exceeds container height */
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* Limit the description to 3 lines */
+   -webkit-box-orient: vertical;
+ }
+
+ .readMore {
+   padding: 15px;
+   border-radius: 70px;
+   width: 40%;
+   background-color: #004ac1;
+   color: white;
+   cursor: pointer;
+   outline: none;
+   border: 1px solid transparent; /* Added transparent border */
+   margin: 10px;
+   margin-top: -15px;
+   font-size: 16px;
+   font-weight: bolder;
+   margin-bottom: 10px !important;
+   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+     border-color 0.3s ease-in-out; /* Added border-color transition */
+ }
+   .proceed22{
+          padding: 15px;
+   border-radius: 70px;
+   width: 40%;
+   background-color: #004ac1;
+   color: white;
+   cursor: pointer;
+   outline: none;
+   border: 1px solid transparent; /* Added transparent border */
+   margin: 30px 5px;
+   font-size: 16px;
+   font-weight: bolder;
+   margin-bottom: 10px !important;
+   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+     border-color 0.3s ease-in-out;
+       
+   }
+
+ .readMore:hover {
+   background-color: white;
+   color: black;
+   border-color: black; /* Changed border color */
+   direction: rtl;
+ }
+
+ .showMoreBtn {
+   padding: 15px;
+   border-radius: 70px;
+   width: 15%;
+   color: black;
+   cursor: pointer;
+   outline: none;
+   border: 1px solid transparent; /* Added transparent border */
+   margin: 10px;
+   margin-top: -15px;
+   font-size: 16px;
+   font-weight: bolder;
+   margin: 50px;
+   margin-bottom: 10px !important;
+   border-color: black; /* Changed border color */
+   background-color: white;
+   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+     border-color 0.3s ease-in-out; /* Added border-color transition */
+ }
+ .showMoreBtn:hover {
+   background-color: #004ac1;
+   color: white;
+   direction: rtl;
+ }
+
+ /* Media query for smaller screens */
+ @media screen and (max-width: 768px) {
+          #wpform1626{
+   width: 90%;
+ }
+   .product {
+     width: 100%;
+     display: flex;
+   }
+   .header-products {
+     display: flex;
+     flex-direction: column !important;
+     width: 100%;
+     overflow: hidden;
+   }
+   .price {
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+   }
+   .price > p {
+     margin-top: 10px;
+   }
+   .p_input > input {
+     padding: 8px;
+     border-radius: 20px;
+     outline: none;
+     border: 1px solid rgb(72, 72, 72);
+     margin: 10px;
+     width: 80%;
+   }
+   .city {
+     width: 80%;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+   }
+   .city > select {
+     padding: 10px;
+     border-radius: 20px;
+     width: 99%;
+     outline: none;
+     margin: 10px;
+     margin-left: 13px;
+   }
+   .type {
+     width: 80%;
+     display: flex;
+   }
+   .type > select {
+     border-radius: 20px;
+     width: 80%;
+     outline: none;
+   }
+
+   .prod_details {
+     display: flex;
+     flex-direction: column;
+     flex-grow: 1; /* Allow the description to expand vertically */
+     padding: 5px 15px;
+     font-family: "Poppins", sans-serif;
+   }
+
+   .product-title {
+     font-weight: bold;
+     font-size: 1rem;
+     flex-shrink: 0; /* Prevent the title from shrinking */
+   }
+
+   .product-price {
+     color: #000;
+     font-size: 1rem;
+     margin-bottom: 20px;
+   }
+
+   .product-description {
+     margin-top: 15px;
+     margin-bottom: 4px;
+     overflow: hidden;
+     text-overflow: ellipsis; /* Truncate the description if it exceeds container height */
+     display: -webkit-box;
+     -webkit-line-clamp: 3; /* Limit the description to 3 lines */
+     -webkit-box-orient: vertical;
+   }
+
+   .readMore {
+     padding: 15px;
+     border-radius: 70px;
+     width: 40%;
+     background-color: #004ac1;
+     color: white;
+     cursor: pointer;
+     outline: none;
+     border: 1px solid transparent; /* Added transparent border */
+     margin: 10px;
+     margin-top: -15px;
+     font-size: 16px;
+     font-weight: bolder;
+     margin-bottom: 20px !important;
+     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+       border-color 0.3s ease-in-out; /* Added border-color transition */
+   }
+
+   .readMore:hover {
+     background-color: white;
+     color: black;
+     border-color: black; /* Changed border color */
+     direction: rtl;
+   }
+
+   .showMoreBtn {
+     padding: 15px;
+     border-radius: 70px;
+     width: 40%;
+     color: black;
+     cursor: pointer;
+     outline: none;
+     border: 1px solid transparent; /* Added transparent border */
+     margin: 10px;
+     margin-top: -15px;
+     font-size: 16px;
+     font-weight: bolder;
+     margin: 50px;
+     margin-bottom: 10px !important;
+     border-color: black; /* Changed border color */
+     background-color: white;
+     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+       border-color 0.3s ease-in-out; /* Added border-color transition */
+   }
+   .showMoreBtn:hover {
+     background-color: #004ac1;
+     color: white;
+     direction: rtl;
+   }
+ }
+</style>
+
+
+</head>
+<body>
+
+  
+
+
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* CSS styles remain the same */
+</style>
+</head>
+<body>
+<div class="products-component">
+  <div class="header-products">
+    <!-- Header content remains the same -->
+  </div>
+  <div class="products" id="products"></div>
+  <button id="showMoreBtn" class="showMoreBtn">Show More</button>
+</div>
+
+<div class="productDetails" id="productDetails" style="display: none;">
+  <h2>Product Details</h2>
+  <!-- Add product details content here -->
+  <button id="backButton" class="backButton">Back</button>
+</div>
+
+<script>
+/* JavaScript code */
+const products = [];
+
+// The rest of the code remains the same
+
+// Function to show product details
+const showProductDetails = () => {
+  document.getElementById("products").style.display = "none";
+  document.getElementById("productDetails").style.display = "block";
+};
+
+// Function to show products and hide product details
+const showProducts = () => {
+  document.getElementById("products").style.display = "block";
+  document.getElementById("productDetails").style.display = "none";
+};
+
+// Event listener for the "Learn More" button
+document.getElementById("products").addEventListener("click", (event) => {
+  if (event.target.classList.contains("readMore")) {
+    showProductDetails();
+  }
+});
+
+// Event listener for the "Back" button
+document.getElementById("backButton").addEventListener("click", () => {
+  showProducts();
+});
+
+// Call the fetchData function to fetch and populate the products
+fetchData();
+</script>
+</body>
+</html>
